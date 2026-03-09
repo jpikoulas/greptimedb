@@ -23,7 +23,7 @@ use async_nats::{Client, ConnectOptions};
 use common_wal::config::nats::{DatanodeNatsConfig, NatsTlsConfig};
 use snafu::ResultExt;
 
-use crate::error::{ConnectNatsSnafu, CreateNatsStreamSnafu, GetNatsStreamSnafu, Result};
+use crate::error::{ConnectNatsSnafu, CreateNatsStreamSnafu, GetNatsStreamSnafu, IoSnafu, Result};
 
 pub(crate) type NatsClientRef = Arc<NatsClient>;
 
