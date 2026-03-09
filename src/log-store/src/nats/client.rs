@@ -23,7 +23,7 @@ use async_nats::{Client, ConnectOptions};
 use common_wal::config::nats::{DatanodeNatsConfig, NatsTlsConfig};
 use snafu::ResultExt;
 
-use crate::error::{ConnectNatsSnafu, CreateNatsStreamSnafu, GetNatsStreamSnafu, IoSnafu, Result};
+use crate::error::{ConnectNatsSnafu, CreateNatsStreamSnafu, GetNatsStreamSnafu, Result};
 
 pub(crate) type NatsClientRef = Arc<NatsClient>;
 
@@ -59,16 +59,10 @@ impl NatsClient {
         // TLS
         if let Some(tls) = &config.tls {
             if let Some(ca_cert) = &tls.ca_cert_path {
-                opts = opts
-                    .add_root_certificates(ca_cert)
-                    .await
-                    .context(IoSnafu { path: ca_cert.clone() })?;
+                opts = opts.add_root_certificates(ca_cert.into());
             }
             if let (Some(cert), Some(key)) = (&tls.client_cert_path, &tls.client_key_path) {
-                opts = opts
-                    .add_client_certificate(cert, key)
-                    .await
-                    .context(IoSnafu { path: cert.clone() })?;
+                opts = opts.add_client_certificate(cert.into(), key.into());
             }
             opts = opts.require_tls(true);
         }

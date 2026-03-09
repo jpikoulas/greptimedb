@@ -34,7 +34,7 @@ use store_api::logstore::entry::Entry;
 use store_api::logstore::provider::NatsProvider;
 use store_api::storage::RegionId;
 
-use crate::error::{ConsumeNatsMessagesSnafu, CreateNatsConsumerSnafu, GetLastNatsMessageSnafu, Result};
+use crate::error::{ConsumeNatsMessagesSnafu, CreateNatsConsumerSnafu, Result};
 use crate::nats::record::{NatsRecord, maybe_emit_entry, remaining_entries};
 
 /// Fetches all WAL entries for `subject` starting at `start_seq`.

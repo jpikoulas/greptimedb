@@ -33,7 +33,7 @@ use store_api::logstore::entry::{Entry, MultiplePartEntry, MultiplePartHeader, N
 use store_api::logstore::provider::{NatsProvider, Provider};
 use store_api::storage::RegionId;
 
-use crate::error::{DecodeNatsHeaderSnafu, IllegalSequenceSnafu, MissingKeySnafu, Result};
+use crate::error::{IllegalSequenceSnafu, MissingKeySnafu, Result};
 use crate::nats::EntryId;
 
 // --------------------------------------------------------------------------
